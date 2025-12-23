@@ -8,27 +8,68 @@
 }
 
 body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f1f1f1;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  padding: 0;
+  margin: 0;
+  background: radial-gradient(circle at 20% 20%, #0ea5e933, transparent 35%),
+              radial-gradient(circle at 80% 0%, #f472b633, transparent 30%),
+              #0b1021;
+  color: #e2e8f0;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
 }
 
 .header {
-  padding: 2px;
-  font-size: 40px;
+  padding: 24px 20px;
   text-align: center;
-  background: white;
+  background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+  border-bottom: 4px solid #0b1021;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  margin-bottom: 26px;
 }
 
-.leftcolumn {   
+.header h2 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 0.4px;
+  color: #0b1021;
+}
+
+.leftcolumn {
   float: left;
   width: 100%;
 }
 
 .card {
-   background-color: white;
-   padding: 20px;
-   margin-top: 20px;
+   background-color: rgba(255, 255, 255, 0.05);
+   padding: 22px 24px;
+   border-radius: 18px;
+   border: 1px solid rgba(255, 255, 255, 0.06);
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32);
+}
+
+.card h1 {
+  margin: 0 0 10px;
+  font-size: 30px;
+  color: #e0f2fe;
+}
+
+.card h5 {
+  margin: 0 0 16px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.card p {
+  margin: 0;
+  line-height: 1.7;
+  color: #cbd5e1;
+  white-space: pre-line;
 }
 
 .row:after {
@@ -38,7 +79,7 @@ body {
 }
 
 @media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {   
+  .leftcolumn {   
     width: 100%;
     padding: 0;
   }
@@ -47,16 +88,18 @@ body {
 </head>
 <body>
 
-<div class="header">
-  <h2>Tomi's Blog</h2>
-</div>
+<div class="page">
+  <div class="header">
+    <h2>Tomi's Blog</h2>
+  </div>
 
-<div class="row">
-  <div class="leftcolumn">
-    <div class="card">
-        <h1>{{posts.title}}</h1>
-        <h5>{{posts.created_at}}</h5>
-        <p>{{posts.body}}</p>
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="card">
+          <h1>{{post.title}}</h1>
+          <h5>{{post.created_at}}</h5>
+          <p>{{post.body}}</p>
+      </div>
     </div>
   </div>
 </div>

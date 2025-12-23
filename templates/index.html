@@ -8,27 +8,87 @@
 }
 
 body {
-  font-family: Arial;
-  padding: 20px;
-  background: #f1f1f1;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  padding: 0;
+  margin: 0;
+  background: radial-gradient(circle at 20% 20%, #0ea5e933, transparent 35%),
+              radial-gradient(circle at 80% 0%, #f472b633, transparent 30%),
+              #0b1021;
+  color: #e2e8f0;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
 }
 
 .header {
-  padding: 2px;
-  font-size: 40px;
+  padding: 28px 24px;
   text-align: center;
-  background: white;
+  background: linear-gradient(135deg, #0ea5e9, #22d3ee);
+  border-bottom: 4px solid #0b1021;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  margin-bottom: 30px;
 }
 
-.leftcolumn {   
+.header h2 {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 0.4px;
+  color: #0b1021;
+}
+
+.leftcolumn {
   float: left;
   width: 100%;
 }
 
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
 .card {
-   background-color: white;
-   padding: 20px;
-   margin-top: 20px;
+   background-color: rgba(255, 255, 255, 0.04);
+   padding: 18px 20px;
+   border-radius: 16px;
+   border: 1px solid rgba(255, 255, 255, 0.06);
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.38);
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.post-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.post-link h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  color: #e0f2fe;
+}
+
+.post-link h5 {
+  margin: 0 0 10px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: #94a3b8;
+}
+
+.post-link p {
+  margin: 0;
+  line-height: 1.6;
+  color: #cbd5e1;
 }
 
 .row:after {
@@ -47,21 +107,25 @@ body {
 </head>
 <body>
 
-<div class="header">
-  <h2>Tomi's Blog</h2>
-</div>
+<div class="page">
+  <div class="header">
+    <h2>Tomi's Blog</h2>
+  </div>
 
-<div class="row">
-  <div class="leftcolumn">
-    {% for post in posts reversed %}
-    <div class="card">
-      <a style="text-decoration: none; color: black;" href="/post/{{post.id}}">
-        <h2>{{post.title}}</h2>
-        <h5>{{post.created_at}}</h5>
-        <p>{{post.body|truncatewords:20}}</p>
-      </a>
+  <div class="row">
+    <div class="leftcolumn">
+      <div class="posts">
+        {% for post in posts reversed %}
+        <div class="card">
+          <a class="post-link" href="{% url 'post' post.id %}">
+            <h2>{{post.title}}</h2>
+            <h5>{{post.created_at}}</h5>
+            <p>{{post.body|truncatewords:20}}</p>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
     </div>
-    {% endfor %}
   </div>
 </div>
 
